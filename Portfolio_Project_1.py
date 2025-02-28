@@ -1,5 +1,7 @@
 import random
 
+#Functions:
+
 def mine_generator (rows, columns, number_of_mines):
     grid_size = rows * columns
     mine_placement = []
@@ -259,92 +261,65 @@ def game_running (start_grid, interface_grid, number_of_flags, number_of_mines):
             print("Game Over")
 
 def reveal_expansion (start_grid, interface_grid, row, column):
-    # print(start_grid)
     try:
         if interface_grid[row -1][column - 1] == " " and row - 1 >= 0 and column - 1 >= 0:
             interface_grid[row -1][column - 1] = start_grid [row -1][column - 1]
-            # print("start point:{}, {} end point, {} {}".format(row , column, row - 1, column - 1))
             if interface_grid[row -1][column - 1] == 0:   
                 reveal_expansion (start_grid, interface_grid, row -1, column - 1)
     except:
-        # print("did not run start point:{}, {} end point, {} {}".format(row , column, row - 1, column - 1))
         None
     try:
         if interface_grid[row -1][column] == " " and row - 1 >= 0:
             interface_grid[row -1][column] = start_grid [row -1][column]
-            # print("start point:{}, {} end point, {} {}".format(row , column, row - 1, column))
             if interface_grid[row -1][column] == 0:            
                 reveal_expansion (start_grid, interface_grid, row -1, column)
     except:
-        # print("did not run start point:{}, {} end point, {} {}".format(row , column, row - 1, column))
         None
     try:
         if interface_grid[row -1][column +1] == " " and row - 1 >= 0:
             interface_grid[row -1][column +1] = start_grid [row -1][column +1]
-            # print("start point:{}, {} end point, {} {}".format(row , column, row - 1, column + 1))
             if interface_grid[row -1][column +1] == 0:
                 reveal_expansion (start_grid, interface_grid, row -1, column +1)
     except:
-        # print("did not run start point:{}, {} end point, {} {}".format(row , column, row - 1, column + 1))
         None
     try:
         if interface_grid[row][column -1] == " " and column -1 >= 0:
             interface_grid[row][column -1] = start_grid [row][column -1]
-            # print("start point:{}, {} end point, {} {}".format(row , column, row, column - 1))
             if interface_grid[row][column -1] == 0:
                 reveal_expansion (start_grid, interface_grid, row, column -1)
     except:
-        # print("did not run start point:{}, {} end point, {} {}".format(row , column, row, column - 1))
         None
     try:
         if interface_grid[row][column +1] == " ":
             interface_grid[row][column +1] = start_grid [row][column +1]
-            # print("start point:{}, {} end point, {} {}".format(row , column, row, column + 1))
             if interface_grid[row][column +1] == 0:
                 reveal_expansion (start_grid, interface_grid, row, column +1)
     except:
-        # print("did not run start point:{}, {} end point, {} {}".format(row , column, row, column + 1))
         None
     try:
         if interface_grid[row +1][column - 1] == " " and column -1 >= 0:
             interface_grid[row +1][column - 1] = start_grid [row +1][column - 1]
-            # print("start point:{}, {} end point, {} {}".format(row , column, row + 1, column - 1))
             if interface_grid[row +1][column - 1] == 0:
                 reveal_expansion (start_grid, interface_grid, row +1, column - 1)
     except:
-        # print("did not run start point:{}, {} end point, {} {}".format(row , column, row + 1, column - 1))
         None
     try:
         if interface_grid[row +1][column] == " ":
             interface_grid[row +1][column] = start_grid [row +1][column]
-            # print("start point:{}, {} end point, {} {}".format(row , column, row + 1, column))
             if interface_grid[row +1][column] == 0:
                 reveal_expansion (start_grid, interface_grid, row +1, column)
     except:
-        # print("did not run start point:{}, {} end point, {} {}".format(row , column, row + 1, column))
         None
     try:
         if interface_grid[row +1][column +1] == " ":
             interface_grid[row +1][column +1] = start_grid [row +1][column +1]
-            # print("start point:{}, {} end point, {} {}".format(row , column, row + 1, column + 1))
             if interface_grid[row +1][column +1] == 0:
                 reveal_expansion (start_grid, interface_grid, row +1, column +1)
     except:
-        # print("did not run start point:{}, {} end point, {} {}".format(row , column, row + 1, column + 1))
         None
 
 
-#Testing Area
-# print(mine_generator(8, 8, 10))
-
-# test_mines = mine_generator(8, 8, 10)
-# print(test_mines)
-# print (grid_generator(8, 8, test_mines))
-
-
-# terminal_interface(grid_generator(8, 8, test_mines))
-# print(user_input())
-
+#Main Code:
 
 game_config = game_generate_input()
 mines_in_game = mine_generator(game_config[0], game_config[1], game_config[2])
